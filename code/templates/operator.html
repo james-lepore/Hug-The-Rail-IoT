@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hugs the Rail</title>
+        <link rel = 'stylesheet' href = {{url_for('static', filename = 'css/style.css')}}></link>
+    </head>
+    <body>
+        <main id="operator_content">
+            <div id='settings_container'>
+                <div class="container">
+                    <h2>Welcome, operator</h2>
+                    <button type="submit" id="start_trip" class="cool_button" onclick="start_trip()"><span>Start Trip</span></button>
+                </div>
+                <br/>
+                <div id="speed_container">
+                    <h4>Speed Control:</h4>
+                    <input type="number" min="0" max="60" value="0" step="5" onkeydown="return false" id="speed_val" /> MPH
+                </div>
+                <br/>
+                <div id="suggestion_container">
+                    <h4>Suggestions</h4>
+                    <p id="suggestion">---No Suggestion---</p>
+                    <button type="submit" id = "acc_sug" class='cool_button hidden' onclick="accept_suggestion()"><span>Accept Suggestion</span></button>
+                </div>
+                <br/>
+                <div>
+                    <button type="submit" id='logoff_button' class='cool_button' onclick="logoff()"><span>Log Off</span></button>
+                </div>
+            </div>
+
+            <div id="vals_container">
+                <div>
+                    <p>Rain Level:</p>
+                    <p id="rain_val">N/A</p>
+                    <p id="rain_ok" class='hidden ok'>No Hazard</p>
+                    <p id="rain_hazard" class='hidden hazard'>Hazardous Condition Detected!</p>
+                    <p id="rain_warning" class='hidden warning'>Hazardous Condition Detected!</p>
+                </div>
+                <div>
+                    <p>Wind Level:</p>
+                    <p id="wind_val">N/A</p>
+                    <p id="wind_ok" class='hidden ok'>No Hazard</p>
+                    <p id="wind_hazard" class='hidden hazard'>Hazardous Condition Detected!</p>
+                    <p id="wind_warning" class='hidden warning'>Hazardous Condition Detected!</p>
+                </div>
+                <div>
+                    <p>Wheel Slippage:</p>
+                    <p id="slip_val">N/A</p>
+                    <p id="slip_ok" class='hidden ok'>No Hazard</p>
+                    <p id="slip_hazard" class='hidden hazard'>Hazardous Condition Detected!</p>
+                    <p id="slip_warning" class='hidden warning'>Hazardous Condition Detected!</p>
+                </div>
+                <div>
+                    <p>Stationary Object Detected?</p>
+                    <p id="stat_val">N/A</p>
+                    <p id="stat_ok" class='hidden ok'>No Hazard</p>
+                    <p id="stat_hazard" class='hidden hazard'>Potentially Hazardous Condition Detected.</p>
+                    <p id="stat_warning" class='hidden warning'>Hazardous Condition Detected!</p>
+                </div>
+                <div>
+                    <p>Moving Object Detected?</p>
+                    <p id="mov_val">N/A</p>
+                    <p id="mov_ok" class='hidden ok'>No Hazard</p>
+                    <p id="mov_hazard" class='hidden hazard'>Potentially Hazardous Condition Detected.</p>
+                    <p id="mov_warning" class='hidden warning'>Hazardous Condition Detected!</p>
+                </div>
+                <div>
+                    <p>Closed Gate Detected?</p>
+                    <p id="gate_val">N/A</p>
+                    <p id="gate_ok" class='hidden ok'>No Hazard</p>
+                    <p id="gate_warning" class='hidden warning'>Hazardous Condition Detected!</p>
+                </div>
+            </div>
+        </main>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src={{ url_for('static', filename='js/getData.js') }}></script>
+    </body>
+</html>

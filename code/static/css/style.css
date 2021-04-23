@@ -1,0 +1,124 @@
+.login_container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	height:200px;
+}
+
+.hidden {
+	display: none;
+}
+
+.ok {
+	color: #4CAF50;
+}
+
+.hazard {
+	color:orange;
+}
+
+.warning {
+	color:#f4511e;
+}
+
+#operator_content {
+	display: flex;
+	justify-content: space-around;
+}
+
+#settings_container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: space-between;
+	width: 300px;
+}
+
+#suggestion_container {
+	height: 150px;
+}
+
+#acc_sug, #log_button, #update_button {
+	border-radius: 4px;
+	background-color: #008CBA;
+	border: none;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 14px;
+	padding: 20px;
+	width: 150px;
+	transition: all 0.5s;
+	cursor: pointer;
+	margin: 5px;
+}
+
+#vals_container {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	width: 540px;
+}
+
+#vals_container div {
+	margin: 10px;
+	padding: 10px;
+	width: 210px;
+	height: 125px;
+	border: 1px solid black;
+}
+
+#start_trip {
+	display: inline-block;
+	border-radius: 4px;
+	background-color: #4CAF50;
+	border: none;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 14px;
+	padding: 20px;
+	width: 150px;
+	transition: all 0.5s;
+	cursor: pointer;
+	margin: 5px;
+}
+
+.cool_button span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+
+.cool_button span:after {
+	content: '\00bb';
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+
+.cool_button:hover span {
+	padding-right: 25px;
+}
+
+.cool_button:hover span:after {
+	opacity: 1;
+	right: 0;
+}
+
+#logoff_button {
+	display: inline-block;
+	border-radius: 4px;
+	background-color: #f4511e;
+	border: none;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 14px;
+	padding: 20px;
+	width: 150px;
+	transition: all 0.5s;
+	cursor: pointer;
+	margin: 5px;
+}

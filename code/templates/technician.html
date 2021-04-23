@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hugs the Rail</title>
+        <link rel = 'stylesheet' href = {{url_for('static', filename = 'css/style.css')}}></link>
+    </head>
+    <body>
+        <div class="settings_container">
+            <h2>Welcome, Technician</h2>
+            <br/>
+            <div>
+                <button type="submit" id='log_button' class='cool_button' onclick="tech_log()"><span>Upload Log to Cloud</span></button>
+            </div>
+            <br/>
+            <div>
+                <button type="submit" id='update_button' class='cool_button' onclick="tech_update()"><span>Update IoT Engine</span></button>
+            </div>
+            <br/>
+            <div>
+                <button type="submit" id='logoff_button' class='cool_button' onclick="logoff()"><span>Log Off</span></button>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src={{ url_for('static', filename='js/getData.js') }}></script>
+    </body>
+</html>
