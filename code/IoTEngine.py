@@ -100,6 +100,7 @@ class IoTEngine:
     self.prev_obj_pos = reading
     return ['ok', 'no hazard detected', 'warning', 'stationary object detected']
 
+  #Logic that determines display message for an open/closed gate
   def gate_rec(self, reading, speed):
     speed = int(speed)
     reading = float(reading)
@@ -107,6 +108,7 @@ class IoTEngine:
       return['warning', 'Stop the train! Reduce speed to 0 MPH'] 
     return ['ok', 'no hazard detected']
 
+  #Logic that determines display message
   def rec_to_display(self, speed):
     speed = int(speed)
     if(speed > 0 and (self.recs[7] == "warning" or self.recs[9] == "warning" or self.recs[11] == "warning")):
