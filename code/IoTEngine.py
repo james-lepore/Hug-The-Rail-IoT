@@ -3,13 +3,15 @@ from urllib.request import urlopen, URLError
 import time
 
 class IoTEngine:
+  #constructor to declare attributes of IoTEngine
   def __init__(self):
     self.recs = []
     self.my_tsnr = tsnr.TSNR()
     self.prev_obj_pos = 0
     self.prev_obj_spd = -1
 
-  def rain_gague_rec(self, reading, speed):
+  #Logic that determines display message for rain gauge
+  def rain_gauge_rec(self, reading, speed):
     speed = int(speed)
     reading = float(reading)
     if(speed <= 20):
@@ -27,6 +29,7 @@ class IoTEngine:
       else:
         return ['warning', 'reduce speed to 20 MPH']
 
+  #Logic that determines display message for anemometer readings
   def anemometer_rec(self, reading, speed):
     speed = int(speed)
     reading = float(reading)
@@ -46,6 +49,7 @@ class IoTEngine:
       else:
         return ['warning', 'reduce speed to 20 MPH']
 
+  #Logic that determines display message for wheel slippage
   def wheel_slip_rec(self, reading, speed):
     speed = int(speed)
     reading = float(reading)
@@ -65,6 +69,7 @@ class IoTEngine:
       else:
         return ['warning', 'reduce speed to 20 MPH']
 
+  #Logic that determines display message for detection of a moving/stat object
   def moving_stat_obj_rec(self, reading, speed):
     speed = int(speed)
     reading = float(reading)
@@ -113,11 +118,12 @@ class IoTEngine:
     
     return ["0", "---No Suggestion---"]
 
+  #Collects suggestions from prior functions
   def get_suggestion(self, speed):
     data = self.my_tsnr.send_data()
     # data = values for the following sensors [rain,wind,wheel,radar,camera]
     self.recs = [speed] + \
-      self.rain_gague_rec(data[0], speed) + \
+      self.rain_gauge_rec(data[0], speed) + \
       self.anemometer_rec(data[1], speed) + \
       self.wheel_slip_rec(data[2], speed) + \
       self.moving_stat_obj_rec(data[3], speed) + \
@@ -129,6 +135,7 @@ class IoTEngine:
     file1.close()
     return self.recs
 
+  #check if internet connection is available
   def internet_available(self):
     try:
         urlopen('http://216.58.192.142', timeout=1)
@@ -136,6 +143,7 @@ class IoTEngine:
     except URLError as err: 
         return False
 
+  #sends sensor data to log file
   def save_log_to_cloud(self):
     if(self.internet_available()):
       f = open('LogFile.txt', 'r+')
@@ -147,6 +155,7 @@ class IoTEngine:
       return "Successfully uploaded to Cloud Log."
     return "No Internet Connection. Cannot upload to Cloud Log."
 
+  #updates IoT engine
   def update_iot_engine(self):
     if(self.internet_available()):
       time.sleep(3)
