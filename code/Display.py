@@ -24,12 +24,12 @@ class Display:
     def update(self):
         return self.my_engine.update_iot_engine()
 
-#renders the login form
+    #renders the login form
     @app.route('/')
     def login():
         return render_template("login.html")
 
-#sends username and password, validates user
+    #sends username and password, validates user
     @app.route("/login", methods=["POST"])
     def request_logon():
         usr = request.form['usr']
@@ -37,12 +37,12 @@ class Display:
         my_login = Login.Login(usr,pwd)
         return my_login.login_request()
 
-#renders operator display view
+    #renders operator display view
     @app.route("/operator", methods=["GET"])
     def display_op():
         return render_template("operator.html")
 
-#allows the operator to start trip
+    #allows the operator to start trip
     @app.route("/operator", methods=["POST"])
     def start_trip():
         op_disp.my_engine = IoTEngine.IoTEngine()
@@ -51,23 +51,23 @@ class Display:
         file1.close()
         return str(len(op_disp.my_engine.my_tsnr.RainGauge.value))
 
-#recieves a recomendation from the IoTEngine and displays on IoTDisplay
+    #recieves a recomendation from the IoTEngine and displays on IoTDisplay
     @app.route("/operator/trip", methods=["POST"])
     def get_rec():
         speed = request.form['speed']
         return op_disp.display_warning(speed)
 
-#renders technician display view
+    #renders technician display view
     @app.route("/technician", methods=["GET"])
     def display_tech():
         return render_template("technician.html")
 
-#renders technician display log
+    #renders technician display log
     @app.route("/technician/log", methods=["POST"])
     def tech_log():
         return tech_disp.log()
 
-#renders technician option to update software
+    #renders technician option to update software
     @app.route("/technician/update", methods=["POST"])
     def tech_update():
         return tech_disp.update()
