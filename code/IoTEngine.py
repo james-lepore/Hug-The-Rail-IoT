@@ -33,7 +33,6 @@ class IoTEngine:
   def anemometer_rec(self, reading, speed):
     speed = int(speed)
     reading = float(reading)
-    return ['ok', 'no hazard detected']
     if(speed <= 20):
       return ['ok', 'no hazard detected']
     elif(speed > 20 and speed <= 40):
@@ -53,7 +52,6 @@ class IoTEngine:
   def wheel_slip_rec(self, reading, speed):
     speed = int(speed)
     reading = float(reading)
-    return ['ok', 'no hazard detected']
     if(speed <= 20):
       return ['ok', 'no hazard detected']
     elif(speed > 20 and speed <= 40):
