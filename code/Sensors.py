@@ -2,20 +2,25 @@ import csv
 import re
 
 class Sensor:
+  #constructor to declare attributes of Sensors
   def __init__(self, sensorType, ID):
     self.sensorType = sensorType
     self.ID = ID
     self.value = self.set_value()
 
+  #return sensor type
   def get_sensorType(self):
     return self.sensorType
 
+  #return sensor ID
   def get_ID(self):
     return self.ID
 
+  #returns value from sensor
   def get_value(self):
     return self.value
 
+  #collects sensor readings
   def set_value(self):
     queue = []
     with open('data.csv') as File:
@@ -25,6 +30,7 @@ class Sensor:
           queue=row[1:]
     return queue
 
+  #returns most recent sensor reading
   def get_reading(self):
     return self.value.pop(0)
 
