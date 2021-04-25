@@ -5,6 +5,7 @@ class Login:
         self.id = id
         self.password = password
         
+    #accepts a login request with user id and password and validates or rejects user
     def login_request(self):
       if(self.id=="operator" and self.password=="cs347"):
         return "operator"
