@@ -1,6 +1,7 @@
 import Sensors as sensors
 
 class TSNR:
+  #constructor to declare TSNR attributes
   def __init__(self):
     self.RainGauge = sensors.Sensor("raingauge",4)
     self.Anemometer = sensors.Sensor("anemometer",3)
@@ -8,6 +9,7 @@ class TSNR:
     self.Radar = sensors.Sensor("radar",9)
     self.Camera = sensors.Sensor("camera",2)
 
+  #sends data from sensors
   def send_data(self):
     return [
         self.RainGauge.get_reading(),
