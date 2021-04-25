@@ -1,5 +1,6 @@
 var suggestionVal = 0;
 
+//prepares IoTEngine to receive login data
 $(document).ready(function() {
 	try {
 		var u = document.getElementById("uname");
@@ -21,6 +22,7 @@ $(document).ready(function() {
 	} catch {}
 });
 
+//validates user login
 function login() {
 	$.ajax({
 		data : {
@@ -38,10 +40,12 @@ function login() {
 	});
 }
 
+//allows user to logoff
 function logoff() {
 	window.location.href = "/"
 }
 
+//begins trip and sensor reading
 function start_trip() {
 	document.getElementById("start_trip").style.pointerEvents = "none";
 	document.getElementById("start_trip").style.opacity = "0.6";
@@ -54,6 +58,7 @@ function start_trip() {
 	});
 }
 
+//Continuously runs the IoTEngine until trip is over
 function myLoop(dur) {
 	setTimeout(function() {  		 	
 		$.ajax({
@@ -82,6 +87,7 @@ function myLoop(dur) {
 	  }, 500);
 }
 
+//sets warning for each sensor
 function set(data){
 	//Rain
 	document.getElementById("rain_val").innerHTML = data[13] + " IN";
@@ -183,11 +189,13 @@ function set(data){
 	}
 }
 
+//registers when operator accepts IoTEngine suggestion
 function accept_suggestion() {
 	document.getElementById("speed_val").value = suggestionVal;
 	document.getElementById("acc_sug").style.display = "none";
 }
 
+//resets IoTEngine
 function reset() {
 	document.getElementById("start_trip").style.pointerEvents = "auto";
 	document.getElementById("start_trip").style.opacity = "1";
@@ -219,6 +227,7 @@ function reset() {
 	document.getElementById("gate_warning").style.display = "none";
 }
 
+//Displays technician log
 function tech_log() {
 	document.getElementById("log_button").style.opacity = "0.6";
 	document.getElementById("update_button").style.opacity = "0.6";
@@ -236,6 +245,7 @@ function tech_log() {
 	});
 }
 
+//Gives technician option to update software
 function tech_update() {
 	document.getElementById("log_button").style.opacity = "0.6";
 	document.getElementById("update_button").style.opacity = "0.6";
