@@ -206,7 +206,7 @@ function accept_suggestion() {
 	document.getElementById("acc_sug").style.display = "none";
 }
 
-<<<<<<< HEAD
+//honks the horn
 function honk_horn() {
 	var honk = new Audio('../static/honk.m4a');
 	honk.volume = 0.2;
@@ -215,9 +215,7 @@ function honk_horn() {
 	document.getElementById("horn").style.pointerEvents = "auto";
 }
 
-=======
 //resets IoTEngine
->>>>>>> 1c76bc5457e0da15427c5581d23fdcd55e21efad
 function reset() {
 	document.getElementById("start_trip").style.pointerEvents = "auto";
 	document.getElementById("start_trip").style.opacity = "1";
