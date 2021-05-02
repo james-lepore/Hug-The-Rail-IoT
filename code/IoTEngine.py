@@ -78,12 +78,12 @@ class IoTEngine:
     if(self.prev_obj_pos == 0):
       self.prev_obj_pos = reading
       return ['hazard', 'potential hazard detected', 'hazard', 'potential hazard detected']
-    if(self.prev_obj_spd == 0):
+    if(self.prev_obj_spd == -1):
       self.prev_obj_spd = self.prev_obj_pos - reading
       self.prev_obj_pos = reading
       return ['hazard', 'potential hazard detected', 'hazard', 'potential hazard detected']
     if(speed != 0):
-      if(self.prev_obj_spd == self.prev_obj_pos - reading):
+      if(self.prev_obj_pos == reading):
         self.prev_obj_spd = self.prev_obj_pos - reading
         self.prev_obj_pos = reading
         return ['warning', 'moving object detected', 'ok', 'no hazard detected']
@@ -102,16 +102,22 @@ class IoTEngine:
   def gate_rec(self, reading, speed):
     speed = int(speed)
     reading = float(reading)
-    if(reading == 1):
-      return['warning', 'Stop the train! Reduce speed to 0 MPH'] 
-    return ['ok', 'no hazard detected']
+    if(reading == 0):
+      return ['ok', 'no hazard detected']
+    if(reading < 0):
+      return ['hazard', 'Honk the horn']
+    return['warning', 'Stop the train! Reduce speed to 0 MPH'] 
 
   #Logic that determines display message
   def rec_to_display(self, speed):
     speed = int(speed)
+    if(self.recs[11] == "hazard"):
+      return ["0", "Honk the Horn!"]
+    if(speed == 0 and self.recs[11] == "warning"):
+      return ["0", "Honk the Horn!"]
     if(speed > 0 and (self.recs[7] == "warning" or self.recs[9] == "warning" or self.recs[11] == "warning")):
       return ["0", "Stop the train"]
-    if(speed > 20 and (self.recs[1] == "warning" or self.recs[3] == "warning" or self.recs[5] == "waring")):
+    if(speed > 20 and (self.recs[1] == "warning" or self.recs[3] == "warning" or self.recs[5] == "warning")):
       return ["20", "Slow the train to 20 MPH or less"]
     if(speed > 40 and (self.recs[1] == "hazard" or self.recs[3] == "hazard" or self.recs[5] == "hazard")):
       return ["40", "Slow the train to 40 MPH or less"]

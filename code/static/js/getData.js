@@ -74,7 +74,7 @@ function myLoop(dur) {
 			}
 			data = data.split(",");
 
-			console.log(dur, data);
+			// console.log(dur, data);
 
 			set(data);
 		});
@@ -170,19 +170,30 @@ function set(data){
 	}
 
 	//Closed Gate Detection
-	document.getElementById("gate_val").innerHTML = (data[17] == "0" ? 'No' : 'Potential')
+	document.getElementById("gate_val").innerHTML = (data[17] == "0" ? 'No' : data[17].replace("-","") + " M away")
 	if(data[11] == 'ok') {
 		document.getElementById("gate_ok").style.display = "block";
+		document.getElementById("gate_hazard").style.display = "none";
+		document.getElementById("gate_warning").style.display = "none";
+	} else if(data[11] == "hazard") {
+		document.getElementById("gate_ok").style.display = "none";
+		document.getElementById("gate_hazard").style.display = "block";
 		document.getElementById("gate_warning").style.display = "none";
 	} else {
 		document.getElementById("gate_ok").style.display = "none";
+		document.getElementById("gate_hazard").style.display = "none";
 		document.getElementById("gate_warning").style.display = "block";
 	}
 
 	// Suggestion Value
 	document.getElementById("suggestion").innerHTML = data[19];
 	suggestionVal = parseInt(data[18], 10);
-	if(data[19] == "---No Suggestion---"){
+	if(data[17] != "0") {
+		document.getElementById("horn").classList.add('glow');
+	} else {
+		document.getElementById("horn").classList.remove('glow');
+	}
+	if(data[19] == "---No Suggestion---" || data[19] == "Honk the Horn!"){
 		document.getElementById("acc_sug").style.display = "none";
 	} else {
 		document.getElementById("acc_sug").style.display = "block";
@@ -195,7 +206,18 @@ function accept_suggestion() {
 	document.getElementById("acc_sug").style.display = "none";
 }
 
+<<<<<<< HEAD
+function honk_horn() {
+	var honk = new Audio('../static/honk.m4a');
+	honk.volume = 0.2;
+	document.getElementById("horn").style.pointerEvents = "none";
+	honk.play();
+	document.getElementById("horn").style.pointerEvents = "auto";
+}
+
+=======
 //resets IoTEngine
+>>>>>>> 1c76bc5457e0da15427c5581d23fdcd55e21efad
 function reset() {
 	document.getElementById("start_trip").style.pointerEvents = "auto";
 	document.getElementById("start_trip").style.opacity = "1";
@@ -216,14 +238,15 @@ function reset() {
 	document.getElementById("slip_warning").style.display = "none";
 	document.getElementById("stat_val").innerHTML = "N/A";
 	document.getElementById("stat_ok").style.display = "none";
-	document.getElementById("stat_hazard").style.display = "block";
+	document.getElementById("stat_hazard").style.display = "none";
 	document.getElementById("stat_warning").style.display = "none";
 	document.getElementById("mov_val").innerHTML = "N/A";
 	document.getElementById("mov_ok").style.display = "none";
-	document.getElementById("stat_hazard").style.display = "none";
+	document.getElementById("mov_hazard").style.display = "none";
 	document.getElementById("mov_warning").style.display = "none";
 	document.getElementById("gate_val").innerHTML = "N/A";
 	document.getElementById("gate_ok").style.display = "none";
+	document.getElementById("gate_hazard").style.display = "none";
 	document.getElementById("gate_warning").style.display = "none";
 }
 

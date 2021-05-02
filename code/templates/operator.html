@@ -3,6 +3,7 @@
     <head>
         <title>Hugs the Rail</title>
         <link rel = 'stylesheet' href = {{url_for('static', filename = 'css/style.css')}}></link>
+        <link rel="shortcut icon" type="image/x-icon" href = {{url_for('static', filename = 'images/favicon.ico')}}></link>
     </head>
     <body>
         <main id="operator_content">
@@ -12,9 +13,14 @@
                     <button type="submit" id="start_trip" class="cool_button" onclick="start_trip()"><span>Start Trip</span></button>
                 </div>
                 <br/>
-                <div id="speed_container">
-                    <h4>Speed Control:</h4>
-                    <input type="number" min="0" max="60" value="0" step="5" onkeydown="return false" id="speed_val" /> MPH
+                <div id='control_panel'>
+                    <div id="speed_container">
+                        <h4>Speed Control:</h4>
+                        <input type="number" min="0" max="60" value="0" step="5" onkeydown="return false" id="speed_val" /> MPH
+                    </div>
+                    <div>
+                        <img src= {{url_for('static', filename = 'images/horn.png')}} onclick="honk_horn()" id="horn"/>
+                    </div>
                 </div>
                 <br/>
                 <div id="suggestion_container">
@@ -65,10 +71,11 @@
                     <p id="mov_warning" class='hidden warning'>Hazardous Condition Detected!</p>
                 </div>
                 <div>
-                    <p>Closed Gate Detected?</p>
+                    <p>Gate Detected?</p>
                     <p id="gate_val">N/A</p>
                     <p id="gate_ok" class='hidden ok'>No Hazard</p>
-                    <p id="gate_warning" class='hidden warning'>Hazardous Condition Detected!</p>
+                    <p id="gate_hazard" class='hidden ok'>Closed Gate Ahead</p>
+                    <p id="gate_warning" class='hidden warning'>Open Gate Ahead!</p>
                 </div>
             </div>
         </main>

@@ -6,6 +6,26 @@
 	height:200px;
 }
 
+#control_panel {
+	width: 75%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+img {
+	margin-top: 20px;
+	height: 75px;
+	cursor: pointer;
+	border-radius: 50%;
+}
+
+.glow {
+	box-shadow: 0 0 50px green; 
+}
+
 .hidden {
 	display: none;
 }

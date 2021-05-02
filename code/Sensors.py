@@ -33,7 +33,10 @@ class Sensor:
   #returns most recent sensor reading
   def get_reading(self):
     return self.value.pop(0)
+<<<<<<< HEAD
+=======
 
 
 # if __name__ == "__main__":
 #   sensor = Sensor("rain_gauge",3)
+>>>>>>> 1c76bc5457e0da15427c5581d23fdcd55e21efad
